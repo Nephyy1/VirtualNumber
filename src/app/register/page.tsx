@@ -2,10 +2,12 @@ import Link from "next/link";
 
 export default function RegisterPage() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-secondary-50 to-secondary-100 p-4">
-      <div className="bg-white p-8 md:p-10 rounded-2xl shadow-xl w-full max-w-md transform transition-transform duration-300 ease-in-out hover:scale-[1.01]">
-        <h1 className="text-3xl font-bold text-gray-800 mb-7 text-center">Create Your Account</h1>
-        <form className="space-y-5">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-primary-100 p-4 sm:p-6 lg:p-8">
+      <div className="bg-white p-8 md:p-10 rounded-3xl shadow-2xl w-full max-w-md transform transition-transform duration-500 ease-in-out hover:scale-[1.01] hover:shadow-3xl">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 mb-8 text-center tracking-tight">
+          Create Account
+        </h1>
+        <form className="space-y-6">
           <div>
             <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
               Username
@@ -13,7 +15,8 @@ export default function RegisterPage() {
             <input
               type="text"
               id="username"
-              className="mt-1 block w-full px-4 py-2.5 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 sm:text-base transition-all duration-200"
+              className="mt-1 block w-full px-4 py-2.5 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 sm:text-base transition-all duration-200"
+              placeholder="Choose a username"
               required
             />
           </div>
@@ -24,7 +27,8 @@ export default function RegisterPage() {
             <input
               type="email"
               id="email"
-              className="mt-1 block w-full px-4 py-2.5 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 sm:text-base transition-all duration-200"
+              className="mt-1 block w-full px-4 py-2.5 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 sm:text-base transition-all duration-200"
+              placeholder="you@example.com"
               required
             />
           </div>
@@ -35,7 +39,8 @@ export default function RegisterPage() {
             <input
               type="password"
               id="password"
-              className="mt-1 block w-full px-4 py-2.5 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 sm:text-base transition-all duration-200"
+              className="mt-1 block w-full px-4 py-2.5 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 sm:text-base transition-all duration-200"
+              placeholder="••••••••"
               required
             />
           </div>
