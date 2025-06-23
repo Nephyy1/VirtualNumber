@@ -1,9 +1,10 @@
 import express from 'express'
 import cors from 'cors'
-import { jkt48Api } from '@jkt48/core'
+import pkg from '@jkt48/core'
 
+const { jkt48Api } = pkg
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
 const apiKey = '48-NEPHYY'
 
 app.use(cors())
