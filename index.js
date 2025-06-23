@@ -9,69 +9,49 @@ const apiKey = '48-NEPHYY'
 
 app.use(cors())
 
-app.get('/', async (req, res) => {
+const fetchData = async (label, fn) => {
   try {
-    const [
-      members,
-      birthdays,
-      events,
-      recent,
-      live,
-      liveYoutube,
-      liveIdn,
-      liveShowroom,
-      youtube,
-      news,
-      theater,
-      replay
-    ] = await Promise.all([
-      jkt48Api.members(apiKey),
-      jkt48Api.birthday(apiKey),
-      jkt48Api.events(apiKey),
-      jkt48Api.recent(apiKey),
-      jkt48Api.live(apiKey),
-      jkt48Api.liveYoutube(apiKey),
-      jkt48Api.liveIdn(apiKey),
-      jkt48Api.liveShowroom(apiKey),
-      jkt48Api.youtube(apiKey),
-      jkt48Api.news(apiKey),
-      jkt48Api.theater(apiKey),
-      jkt48Api.replay(apiKey)
-    ])
-
-    const data = {
-      members,
-      birthdays,
-      events,
-      recent,
-      live,
-      liveYoutube,
-      liveIdn,
-      liveShowroom,
-      youtube,
-      news,
-      theater,
-      replay
-    }
-
-    res.send(`
-      <html>
-        <head>
-          <title>JKT48 Data</title>
-          <style>
-            body { font-family: monospace; background: #000; color: #0f0; padding: 1rem; white-space: pre-wrap }
-            h1 { color: #FEE356 }
-          </style>
-        </head>
-        <body>
-          <h1>JKT48 API Data</h1>
-          <pre>${JSON.stringify(data, null, 2)}</pre>
-        </body>
-      </html>
-    `)
-  } catch (err) {
-    res.status(500).send('Gagal memuat data: ' + err.message)
+    const data = await fn()
+    return [label, data]
+  } catch (e) {
+    return [label, `Gagal: ${e.message}`]
   }
+}
+
+app.get('/', async (req, res) => {
+  const tasks = [
+    fetchData('members', () => jkt48Api.members(apiKey)),
+    fetchData('birthdays', () => jkt48Api.birthday(apiKey)),
+    fetchData('events', () => jkt48Api.events(apiKey)),
+    fetchData('recent', () => jkt48Api.recent(apiKey)),
+    fetchData('live', () => jkt48Api.live(apiKey)),
+    fetchData('liveYoutube', () => jkt48Api.liveYoutube(apiKey)),
+    fetchData('liveIdn', () => jkt48Api.liveIdn(apiKey)),
+    fetchData('liveShowroom', () => jkt48Api.liveShowroom(apiKey)),
+    fetchData('youtube', () => jkt48Api.youtube(apiKey)),
+    fetchData('news', () => jkt48Api.news(apiKey)),
+    fetchData('theater', () => jkt48Api.theater(apiKey)),
+    fetchData('replay', () => jkt48Api.replay(apiKey))
+  ]
+
+  const entries = await Promise.all(tasks)
+  const result = Object.fromEntries(entries)
+
+  res.send(`
+    <html>
+      <head>
+        <title>JKT48 Data</title>
+        <style>
+          body { font-family: monospace; background: #000; color: #0f0; padding: 1rem; white-space: pre-wrap }
+          h1 { color: #FEE356 }
+        </style>
+      </head>
+      <body>
+        <h1>JKT48 API Data (Partial if Error)</h1>
+        <pre>${JSON.stringify(result, null, 2)}</pre>
+      </body>
+    </html>
+  `)
 })
 
 app.listen(port, () => {
