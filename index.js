@@ -4,12 +4,12 @@ import pkg from '@jkt48/core'
 
 const { jkt48Api } = pkg
 const app = express()
-const port = process.env.PORT || 3000
+const port = 3000
 const apiKey = '48-NEPHYY'
 
 app.use(cors())
 
-app.get('/all', async (req, res) => {
+app.get('/', async (req, res) => {
   try {
     const [
       members,
@@ -39,7 +39,7 @@ app.get('/all', async (req, res) => {
       jkt48Api.replay(apiKey)
     ])
 
-    res.json({
+    const data = {
       members,
       birthdays,
       events,
@@ -52,12 +52,28 @@ app.get('/all', async (req, res) => {
       news,
       theater,
       replay
-    })
+    }
+
+    res.send(`
+      <html>
+        <head>
+          <title>JKT48 Data</title>
+          <style>
+            body { font-family: monospace; background: #000; color: #0f0; padding: 1rem; white-space: pre-wrap }
+            h1 { color: #FEE356 }
+          </style>
+        </head>
+        <body>
+          <h1>JKT48 API Data</h1>
+          <pre>${JSON.stringify(data, null, 2)}</pre>
+        </body>
+      </html>
+    `)
   } catch (err) {
-    res.status(500).json({ error: err.message })
+    res.status(500).send('Gagal memuat data: ' + err.message)
   }
 })
 
 app.listen(port, () => {
-  console.log(`✅ Server jalan di http://localhost:${port}/all`)
+  console.log(`✅ Server aktif di http://localhost:${port}`)
 })
