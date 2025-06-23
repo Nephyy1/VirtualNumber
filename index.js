@@ -11,8 +11,8 @@ app.use(cors())
 
 const fetchData = async (label, fn) => {
   try {
-    const data = await fn()
-    return [label, data]
+    const raw = await fn()
+    return [label, raw ?? 'Kosong']
   } catch (e) {
     return [label, `Gagal: ${e.message}`]
   }
