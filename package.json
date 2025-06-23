@@ -1,27 +1,14 @@
 {
-  "name": "nephyy-virtual-number",
-  "version": "0.1.0",
-  "private": true,
+  "name": "jkt48-api-proxy",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "node index.js"
   },
   "dependencies": {
-    "next": "14.x.x",
-    "react": "^18",
-    "react-dom": "^18"
-  },
-  "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "autoprefixer": "^10.0.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.x.x",
-    "postcss": "^8",
-    "tailwindcss": "^3.3.0",
-    "typescript": "^5"
+    "@jkt48/core": "1.1.0",
+    "express": "^4.19.2",
+    "cors": "^2.8.5"
   }
 }
