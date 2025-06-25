@@ -1,0 +1,77 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block;
+}
+
+#info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    user-select: none;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+
+#score {
+    font-size: 4em;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#instructions {
+    font-size: 1.2em;
+    opacity: 0.8;
+}
+
+#results {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 30px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    z-index: 10;
+}
+
+#results.hide {
+    display: none;
+}
+
+#results h2 {
+    margin-top: 0;
+    font-size: 2.5em;
+}
+
+#results p {
+    font-size: 1.5em;
+}
+
+#restart-button {
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: #f0f0f0;
+    color: #333;
+    font-weight: bold;
+}

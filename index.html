@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Tumpuk Balok - NephyyDev</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="info">
+        <div id="score">0</div>
+        <div id="instructions">Klik atau ketuk layar untuk menumpuk balok</div>
+        <div id="results" class="hide">
+            <h2>Game Over</h2>
+            <p>Skor Anda: <span id="final-score"></span></p>
+            <button id="restart-button">Mulai Ulang</button>
+        </div>
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.165.0/build/three.module.js"
+            }
+        }
+    </script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
